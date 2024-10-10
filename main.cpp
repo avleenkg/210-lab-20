@@ -23,11 +23,12 @@ class Chair {
             prices[i] = price;
         }
     }
-    Chair(int l, double arr[SIZE]) {
+    //CHANGE #2--------------------------------------------------
+    Chair(int l, const double arr[SIZE]) { //arr values do not need to be changed
         prices = new double[SIZE];
         legs = l;
         for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+            prices[i] = arr[i];
     }
     // setters and getters
     void setLegs(int l) { legs = l; }   
@@ -62,7 +63,8 @@ int main() {
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3);
+    double pricesarr[SIZE] = {500.00, 233.89, 109.38};
+    Chair *livingChair = new Chair(3, pricesarr); //parameters changed in class, so must change here too----------
     livingChair->setPrices(525.25, 434.34, 252.52);
     livingChair->print();
     delete livingChair;
