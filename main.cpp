@@ -1,7 +1,12 @@
+//Avleen Gill - COMSC 210 Lab 20
+//edit chair maker demo code
+
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 using namespace std;
 const int SIZE = 3;
+const int MIN = 10000, MAX = 99999;
 
 class Chair {
     private:
@@ -9,13 +14,16 @@ class Chair {
     double * prices;
     public:
     // constructors
+    //CHANGE #1------------------------------------------------
     Chair() {
         prices = new double[SIZE];
-        legs = 0;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+        legs = rand() % (4-3+1) + 3;
+        for (int i = 0; i < SIZE; i++){
+            double price = (rand() % (MAX-MIN+1) + MIN) / (double) 100;
+            prices[i] = price;
+        }
     }
-    Chair(int l) {
+    Chair(int l, double arr[SIZE]) {
         prices = new double[SIZE];
         legs = l;
         for (int i = 0; i < SIZE; i++)
@@ -45,6 +53,7 @@ class Chair {
 };
 int main() {
     cout << fixed << setprecision(2);
+    srand(time(0));
 
     //creating pointer to first chair object
     Chair *chairPtr = new Chair;
@@ -69,6 +78,6 @@ int main() {
     collection[2].setPrices(626.26, 515.15, 757.57);
     for (int i = 0; i < SIZE; i++)
         collection[i].print();
-        
+
     return 0;
 }
